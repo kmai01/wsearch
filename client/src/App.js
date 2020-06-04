@@ -12,9 +12,16 @@ var animalsArray=[
 var randomItems=animalsArray[Math.floor(Math.random()*animalsArray.length)];
 console.log(randomItems);
 
+Window.onload = function () {
+   document.getElementById("btn").click();
+
+}
+
+
 class wikiSearch extends React.Component{
  constructor(props) {
    super(props);
+   //this.handleLoad = this.handleLoad.bind(this);
    this.state ={
      searchReturnValues: [],
      searchTerm : randomItems
@@ -22,7 +29,22 @@ class wikiSearch extends React.Component{
    console.log('contructor run')
  }
 
+ //componentDidMount() {
+  //window.addEventListener('load', this.handleLoad);
+//}
 
+//componentWillUnmount() { 
+ // window.removeEventListener('load', this.handleLoad)  
+//}
+
+//handleLoad() {
+ //("btn")
+// }
+
+
+
+
+// Search Wiki for fact 
 
  useSearchEngine =(event) =>{
   event.preventDefault();
@@ -105,7 +127,7 @@ class wikiSearch extends React.Component{
       searchTerm: event.target.value
     });
   }
-
+  
 render() {
   console.log('render run')
 
@@ -129,15 +151,18 @@ render() {
     <div className="App">
       <h1> Search Fact</h1>
       <form action ="">
-        <input type="text" value={this.state.searchTerm || ''} onChange={this.changeSearchTerms} placeholder = "Search for Fact" />
+        <input type="text" value={this.state.searchTerm || ''} id="btn" onChange={this.changeSearchTerms} placeholder = "Search for Fact" />
         <button type="submit" onClick={this.useSearchEngine}>Search</button>
       </form>
       
 
       {searchResults}
+      
 
     </div>
+    
   );
 }
 }
+
 export default wikiSearch;
